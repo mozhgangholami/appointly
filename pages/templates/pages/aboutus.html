@@ -1,0 +1,30 @@
+{% extends '_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "درباره ی ما" %}{% endblock %}
+
+{% block content %}
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8 text-center">
+                <h1 class="mb-4">About Us</h1>
+                <p class="lead">
+                    سالن زیبایی مهر یک کلینیک زیبایی حرفه‌ای است که با استفاده از تجهیزات معتبر و تیمی متخصص،
+                    خدمات زیبایی و مراقبتی ارائه می‌دهد. ما تلاش می‌کنیم تجربه‌ای راحت، امن و باکیفیت برای شما ایجاد
+                    کنیم.
+                    امکان رزرو نوبت آنلاین نیز برای راحتی بیشتر شما فراهم شده است.
+                </p>
+                <hr class="my-4">
+                <div class="mt-5">
+                    <h4>{% trans "اطلاعات تماس با ما" %}</h4>
+                    <p class="contact-item">📞 شماره تماس: <a href="tel:09123456789">09123456789</a></p>
+                    <p class="contact-item">📸 اینستاگرام:
+                        <a href="https://instagram.com/yourpage" target="_blank">mehr_biuty@</a>
+                    </p>
+                    <p class="contact-item">📍 آدرس سالن: تهران، خیابان X، کوچه Y، پلاک Z</p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

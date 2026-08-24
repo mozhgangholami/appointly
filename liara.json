@@ -1,0 +1,8 @@
+{
+  "port": "8000",
+  "platform": "docker",
+   "app": "appointly",
+  "build": {
+    "location": "iran"
+  }
+}

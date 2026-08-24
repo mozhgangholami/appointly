@@ -1,0 +1,21 @@
+{% extends "_base.html" %}
+{% load i18n %}
+{% load jalali_tags %}
+{% block content %}
+<div class="container mt-4 form-rtl" dir="rtl">
+  <h2>جزئیات نوبت</h2>
+  <form method="post" class="form-rtl">
+    {% csrf_token %}
+    {{ form.media }}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary  mt-3">رزرو نوبت</button>
+  </form>
+
+  <p><strong>سرویس:</strong> {{ appointment.service.name }}</p>
+  <p><strong>کارمند:</strong> {{ appointment.staff_member.user.get_full_name }}</p>
+  <p><strong>تاریخ:</strong> {{ appointment.date|to_jalali:'%y/%m/%d' }}</p>
+  <p><strong>ساعت شروع:</strong> {{ appointment.start_time }}</p>
+  <p><strong>قیمت:</strong> {{ appointment.total_price }} تومان</p>
+  <p><strong>یادآوری پیامک:</strong> {% if appointment.want_reminder %} فعال {% else %} غیرفعال {% endif %}</p>
+</div>
+{% endblock %}

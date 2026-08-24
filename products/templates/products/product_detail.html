@@ -1,0 +1,84 @@
+{% extends "_base.html" %}
+{% load static %}
+{% load jalali_tags %}
+
+{% block content %}
+<div class="container my-5 product-detail" dir="rtl">
+
+    <!-- عنوان محصول -->
+    <h2 class="text-center mb-4">{{ product.name }}</h2>
+
+    <!-- بخش عکس -->
+    <div class="text-center mb-4">
+        {% if product.image %}
+            <img src="{{ product.image.url }}"
+                 alt="{{ product.title }}"
+                 class="product-img">
+        {% else %}
+            <img src="{% static 'img/products/prod-1.jpg' %}"
+                 alt="No image"
+                 class="product-img">
+        {% endif %}
+    </div>
+
+    <!-- توضیحات راست‌چین -->
+    <div class="product-info mb-5 text-end">
+
+        <p><strong>دسته‌بندی:</strong> {{ product.category.name }}</p>
+
+        <p><strong>توضیحات:</strong></p>
+        <p class="text-muted">{{ product.description }}</p>
+
+        <p><strong>قیمت:</strong> {{ product.price }} تومان</p>
+
+        <p class="text-secondary">
+            <strong>تاریخ ایجاد:</strong>
+            {{ product.created_at|to_jalali:'%Y/%m/%d' }}
+        </p>
+
+        <a href="{% url 'products:product_list' %}" class="btn btn-outline-primary mt-3" style="float: right;">
+            بازگشت به لیست محصولات
+        </a>
+    </div>
+
+    <hr class="my-5">
+
+    <!-- بخش کامنت‌ها -->
+    <h4 class="text-end mb-4">💬 نظرات کاربران </h4>
+
+    {% for comment in comments %}
+         <div class="comment-box border rounded p-3 mb-3 bg-light shadow-sm">
+            <strong class="d-block username">{{ comment.user.username }}</strong>
+            <p class="mt-2">{{ comment.body }}</p>
+
+            <small class="text-muted d-block timestamp">
+                {{ comment.created_at|to_jalali:'%Y/%m/%d _ %H:%M' }}
+            </small>
+
+            {% if user == comment.user %}
+                <div class="mt-2 actions">
+                    <a href="{% url 'products:comment_edit' product.pk comment.pk %}"
+                       class="btn btn-sm btn-outline-primary">ویرایش</a>
+                    <a href="{% url 'products:comment_delete' product.pk comment.pk %}"
+                       class="btn btn-sm btn-outline-danger">حذف</a>
+                </div>
+            {% endif %}
+        </div>
+    {% empty %}
+        <p class="text-muted text-end">هنوز نظری ثبت نشده است.</p>
+    {% endfor %}
+
+    <!-- فرم ثبت نظر -->
+    {% if user.is_authenticated %}
+{#        <h5 class="text-end mt-4" dir="rtl" >ثبت نظر جدید</h5>#}
+        <form method="post" class="text-end" dir="rtl">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary" dir="rtl">ارسال نظر</button>
+        </form>
+    {% else %}
+        <p class="text-muted text-end">برای ثبت نظر ابتدا وارد شوید.</p>
+    {% endif %}
+
+</div>
+{% endblock %}

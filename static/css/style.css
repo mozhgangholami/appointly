@@ -1,0 +1,153 @@
+/* ============================ */
+/* فونت */
+@font-face {
+    font-family: IRANSansX;
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/iransansx/woff/IRANSansX-Regular.woff') format('woff'),
+         url('../fonts/iransansx/woff2/IRANSansX-Regular.woff2') format('woff2');
+}
+
+body {
+    background-color: #FFE9EF !important;
+    font-family: "IRANSansX", sans-serif;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ============================ */
+/* Navbar */
+.navbar, .barbie-navbar {
+    background-color: #FF69B4 !important;
+    border: none;
+    border-radius: 0;
+    box-shadow: 0 2px 6px rgba(255, 105, 180, 0.4);
+}
+
+.nav-left a {
+    color: white;
+    margin-left: 20px;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.nav-left a:hover {
+    opacity: 0.8;
+}
+
+/* ============================ */
+/* بک‌گراند فانتزی */
+.barbie-body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40%;
+    height: 100%;
+    background-image: url("/static/img/team/download.jpg");
+    background-size: cover;
+    background-position: center;
+    opacity: 0.9;
+    mask-image: linear-gradient(to right, black 0%, transparent 90%);
+    z-index: 0;
+}
+
+.container {
+    position: relative;
+    z-index: 1;
+    padding: 30px 15px;
+}
+
+/* ============================ */
+/* کارت‌ها */
+.card {
+    border: none;
+    border-radius: 12px;
+    background-color: #FFE4EC;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 14px rgba(255, 105, 180, 0.35);
+}
+
+/* ============================ */
+/* دکمه */
+.btn-primary {
+    background-color: #FF69B4;
+    border-color: #FF69B4;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #FFA3B5;
+    transform: scale(1.05);
+}
+
+/* ============================ */
+/* Pagination */
+.pagination a {
+    padding: 5px 10px;
+    border: 1px solid #FFB6C1;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #D36C8B;
+}
+
+.pagination a:hover {
+    background-color: #FFB6C1;
+    color: white;
+}
+
+/* ============================ */
+/* Footer */
+footer {
+    background: linear-gradient(90deg, #FFB6C1, #F4A7B9);
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: auto !important;
+}
+
+/* ============================ */
+/* تصاویر محصولات */
+.product-img {
+    max-width: 250px !important;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 15px;
+}
+
+/* ============================ */
+/* فقط صفحه نمایش محصول */
+.product-detail {
+    direction: rtl;
+    text-align: right;
+}
+
+.product-detail p,
+.product-detail h2,
+.product-detail h4,
+.product-detail h5 {
+    text-align: right;
+}
+
+/* ============================ */
+/* چیدمان کامنت‌ها */
+.comment-box {
+    direction: rtl;
+    text-align: right;
+}
+
+/* ============================ */
+/* واکنش‌گرا */
+@media (max-width: 768px) {
+    .navbar-custom .navbar-brand {
+        font-size: 1.3rem;
+    }
+}

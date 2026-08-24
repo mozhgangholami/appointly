@@ -1,0 +1,11 @@
+{% extends "_base.html" %}
+{% block content %}
+<div class="container mt-4">
+  <h2>{{ page.title }}</h2>
+  <p class="text-muted">نویسنده: {{ page.author }} | تاریخ: {{ page.created_at|date:"Y/m/d" }}</p>
+  {% if page.image %}
+    <img src="{{ page.image.url }}" class="img-fluid mb-3" alt="{{ page.title }}">
+  {% endif %}
+  <p>{{ page.content|linebreaks }}</p>
+</div>
+{% endblock %}

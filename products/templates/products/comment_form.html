@@ -1,0 +1,11 @@
+{% extends '_base.html' %}
+{% block content %}
+<div class="container mt-4">
+  <h4>ویرایش نظر</h4>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">ذخیره تغییرات</button>
+  </form>
+</div>
+{% endblock %}

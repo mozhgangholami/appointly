@@ -1,0 +1,399 @@
+@font-face {
+    font-family: IRANSansX;
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/iransansx/woff/IRANSansX-Regular.woff') format('woff'),
+         url('../fonts/iransansx/woff2/IRANSansX-Regular.woff2') format('woff2');
+}
+
+/* تبدیل اعداد انگلیسی به فارسی */
+.ss02 {
+    -moz-font-feature-settings: "ss02";
+    -webkit-font-feature-settings: "ss02";
+    font-feature-settings: "ss02";
+}
+
+/* =======================================
+   Body (LightPink)
+======================================= */
+body {
+    background-color: #FFB6C1; /* صورتی ملایم */
+    margin: 0;
+    font-family: "IRANSansX", sans-serif;
+}
+
+/* =======================================
+   Navbar (HotPink)
+======================================= */
+.barbie-navbar {
+    background-color: #FF69B4 !important;
+    border: none !important;
+}
+.barbie-navbar .navbar-brand,
+.barbie-navbar .nav > li > a,
+.barbie-navbar .navbar-text {
+    color: white !important;
+    font-weight: bold;
+}
+.barbie-body {
+    background-color: #FFB6C1 !important;
+    min-height: 100vh;
+    position: relative;
+    z-index: 1;
+}
+
+.barbie-body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40%;
+    height: 100%;
+    background-image: url("/static/img/team/download.jpg");
+    background-size: cover;
+    background-position: center;
+    opacity: 0.9;
+    mask-image: linear-gradient(to right, black 0%, transparent 90%);
+    pointer-events: none;  /* صفحه را غیر فعال نکند */
+    z-index: -1;           /* پشت محتوا قرار بگیرد */
+}
+
+/* =======================================
+   Footer (HotPink)
+======================================= */
+.site-footer, .footer-custom {
+    background: linear-gradient(90deg, #FFB6C1, #F4A7B9); /* صورتی ملایم */
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: auto; /* پایین صفحه */
+    width: 100%; /* پهنای کامل */
+    box-shadow: 0 -4px 10px rgba(0,0,0,0.08);
+    position: relative; /* جلوگیری از جابه‌جایی به سمت چپ */
+}
+/* =======================================
+   Cards (Light Pink Theme)
+======================================= */
+.card {
+    border: none;
+    border-radius: 12px;
+    background-color: #FFD3DC; /* صورتی خیلی ملایم */
+    transition: 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(255, 105, 180, 0.3);
+}
+
+/* =======================================
+   Buttons
+======================================= */
+.btn-primary {
+    background-color: #FF69B4;
+    border-color: #FF69B4;
+    color: white;
+    transition: 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #FF8AC9;
+    transform: scale(1.05);
+}
+
+/* =======================================
+   Pagination
+======================================= */
+.pagination {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+}
+
+.pagination .page-item {
+    margin: 0 5px;
+}
+
+.pagination .page-link {
+    padding: 8px 14px;
+    border-radius: 5px;
+    border: 1px solid #FFB6C1;
+    color: #FF69B4;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.pagination .page-link:hover {
+    background-color: #FFB6C1;
+    color: white;
+}
+
+.pagination .disabled .page-link {
+    color: #ccc;
+    border-color: #eee;
+    cursor: default;
+}
+
+/* برای اینکه فوتر همیشه پایین باشد */
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.page-wrapper {
+    flex: 1;
+}
+
+footer {
+    margin-top: auto !important;
+}
+/* کانتینر نمونه‌کارها */
+.sample-products {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    gap: 15px !important;
+    justify-content: center !important; /* مرکز چین کردن عکس‌ها */
+    overflow-x: auto !important;
+    padding: 10px 5px !important;
+}
+/* باکس هر نمونه‌کار */
+.sample-products .product-box {
+    flex: 0 0 140px;          /* عرض ثابت باکس */
+    background: #FFE4EC;
+    border-radius: 12px;
+    padding: 10px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(255, 105, 180, 0.2);
+    transition: transform .2s;
+    position: relative;  /* اطمینان از روی هم نیفتادن */
+    z-index: 1;
+}
+
+/* هاور روی باکس */
+.sample-products .product-box:hover {
+    transform: translateY(-4px);
+}
+
+/* عکس نمونه‌کار - مربعی */
+.sample-products img {
+    width: 100%;             /* پر کردن عرض باکس */
+    height: 140px;           /* ارتفاع مساوی عرض */
+    object-fit: cover;       /* حفظ تناسب عکس و پر کردن باکس */
+    border-radius: 10px;
+    display: block;
+    margin: 0 auto;
+}
+.product-main-img {
+    max-width: 350px;
+    width: 100%;
+    border-radius: 14px;
+}
+
+.product-detail p,
+.product-detail h4 {
+    text-align: right !important;
+}
+.product-img {
+    width: 250px !important;
+    max-width: 250px !important;
+    height: auto !important;
+
+    display: block !important;
+    margin: 0 auto !important;
+}
+.comment-box {
+    direction: rtl !important;
+    text-align: right !important;
+}
+
+.comment-box .actions {
+    text-align: right;
+}
+.category-list {
+    list-style: none;
+    padding: 0;
+    text-align: right; /* راست چین کردن آیتم‌ها */
+}
+
+.category-list li {
+    display: inline-block; /* کنار هم */
+    margin-left: 10px;
+    margin-right: 10px;
+}
+/* تمام input و select و textarea در فرم‌های رزرو نوبت راست‌چین شوند */
+.container[dir="rtl"] input,
+.container[dir="rtl"] select,
+.container[dir="rtl"] textarea {
+    direction: rtl !important;
+    text-align: right !important;
+}
+/* سبک اجباری RTL برای فرم‌ها */
+.container[dir="rtl"] *,
+form[dir="rtl"] *,
+.form-rtl *,
+.form-rtl * {
+    direction: rtl !important;
+    text-align: right !important;
+}
+
+/* لیبل‌ها */
+.form-rtl label,
+.container[dir="rtl"] label {
+    display: block !important;
+    text-align: right !important;
+}
+
+/* فیلدها */
+.form-rtl input,
+.form-rtl select,
+.form-rtl textarea,
+.container[dir="rtl"] input,
+.container[dir="rtl"] select,
+.container[dir="rtl"] textarea {
+    direction: rtl !important;
+    text-align: right !important;
+}
+form, form * {
+    direction: rtl !important;
+    text-align: right !important;
+}
+.date-input {
+    max-width: 180px !important;   /* عرض دلخواه */
+    width: 180px !important;
+    display: inline-block !important;
+}
+
+
+/* =======================================
+   📱 Mobile Responsive (max-width: 768px)
+======================================= */
+
+@media (max-width: 768px) {
+
+    /* 📌 کل صفحه */
+    body, .barbie-body {
+        background-position: center;
+        background-size: cover;
+    }
+
+    /* 📌 پس‌زمینه سمت چپ خیلی بزرگه → کوچیک می‌کنیم */
+    .barbie-body::before {
+        width: 65%;         /* بیشتر روی موبایل دیده بشه اما مزاحم محتوا نشه */
+        opacity: 0.5;
+    }
+
+    /* 📌 عنوان‌ها */
+    h1, h2, h3, h4 {
+        text-align: center !important;
+    }
+
+    /* 📌navbar */
+    .navbar-nav {
+        text-align: center !important;
+    }
+
+    .navbar-nav li {
+        margin: 10px 0;
+    }
+
+    /* 📌 نمونه‌کارها (اسکرول افقی مناسب موبایل) */
+    .sample-products {
+        gap: 10px !important;
+        padding: 10px !important;
+    }
+
+    .sample-products .product-box {
+        flex: 0 0 120px !important;
+    }
+
+    .sample-products img {
+        height: 120px !important;
+    }
+
+    /* 📌 جزئیات محصول */
+    .product-main-img {
+        max-width: 270px !important;
+    }
+
+    /* 📌 فرم‌ها */
+    form input,
+    form select,
+    form textarea {
+        width: 100% !important;
+        font-size: 15px;
+    }
+
+    /* تاریخ خیلی دراز نباشه */
+    #id_date,
+    .date-input {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    /* 📌 دسته‌بندی‌ها */
+    .category-list li {
+        display: block !important;
+        margin: 5px 0 !important;
+        text-align: center !important;
+    }
+
+    .category-list {
+        text-align: center !important;
+    }
+
+    /* 📌 کارت‌ها */
+    .card {
+        margin-bottom: 15px;
+    }
+
+    /* 📌 دکمه‌ها */
+    .btn {
+        width: 100% !important;
+        font-size: 15px !important;
+        padding: 10px !important;
+    }
+
+    /* 📌 فوتر */
+    footer {
+        text-align: center !important;
+        padding: 1.5rem 0 !important;
+    }
+}
+@media (max-width: 767px) {
+    .barbie-navbar {
+        position: relative;
+        z-index: 9999;
+    }
+
+    .barbie-navbar .navbar-collapse {
+        position: relative;
+        z-index: 10000;
+    }
+
+    .barbie-navbar .navbar-nav {
+        position: relative;
+        z-index: 10001;
+    }
+
+    .barbie-navbar .navbar-nav > li {
+        position: relative;
+        z-index: 10002;
+    }
+
+    .barbie-navbar .navbar-nav > li > a {
+        position: relative;
+        z-index: 10003;
+    }
+}
+/* رنگ سه خط منوی موبایل */
+@media (max-width: 767.98px) {
+    .barbie-navbar .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='white' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+    }
+}
+

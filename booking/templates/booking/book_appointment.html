@@ -1,0 +1,21 @@
+{% extends "_base.html" %}
+{% load static %}
+{% load i18n %}
+{% load jalali_tags%}
+{% block extra-head %}
+    <link rel="stylesheet" href="{% static 'django_jalali/admin/css/jalali.css' %}">
+    <script src="{% static 'django_jalali/admin/js/jalali.js' %}"></script>
+    <script src="{% static 'django_jalali/admin/js/admin_jalali.js' %}"></script>
+{% endblock %}
+{% block content %}
+<div class="container mt-4 form-rtl" dir="rtl">
+  <h2 class="text-end" dir="rtl">رزرو نوبت جدید</h2>
+
+  <form method="post" class="form-rtl">
+    {% csrf_token %}
+    {{ form.media }}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary mt-3">رزرو نوبت</button>
+  </form>
+</div>
+{% endblock %}

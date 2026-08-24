@@ -1,0 +1,105 @@
+{% extends "_base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}نوبت دهی سالن زیبایی مهر{% endblock %}
+
+{% block content %}
+<div class="hero-section">
+    <div class="hero-overlay">
+        <div class="hero-text text-center">
+            <div class="container my-5">
+                <div class="row">
+
+                    <!-- سمت چپ: خوش آمدگویی -->
+                    <div class="col-md-6 mb-4">
+                        <h1 class="fw-bold mb-3" style="color:#d94f91;">
+                            {% trans "به نوبت دهی سالن زیبایی مهر خوش آمدید" %}
+                        </h1>
+
+                        <p class="home-description">
+                            ما در سالن زیبایی مهر با جدیدترین متدهای روز جهان در خدمت بانوان عزیز هستیم.
+                        </p>
+
+                        <hr class="home-separator">
+
+                        <h3 class="contact-title">راه‌های ارتباطی</h3>
+                        <p class="contact-item">📞 شماره تماس: <a href="tel:09123456789">09123456789</a></p>
+                        <p class="contact-item">📸 اینستاگرام:
+                            <a href="https://instagram.com/yourpage" target="_blank">mehr_biuty@</a>
+                        </p>
+                        <p class="contact-item">📍 آدرس سالن: تهران، خیابان X، کوچه Y، پلاک Z</p>
+                    </div>
+
+                </div>  <!-- row پایان -->
+            </div> <!-- container پایان -->
+
+            <!-- 🔥 نمونه کارها باید بیرون از col-md-6 باشد -->
+            <h2 class="mt-4">{% trans "نمونه کار" %}</h2>
+
+            <div class="sample-products">
+                {% for product in sample_products %}
+                    <div class="product-box">
+                        <a href="{% url 'products:category_products' product.category.pk %}">
+                            <img src="{{ product.image.url }}" alt="{{ product.title }}">
+                            <p>{{ product.category.name }}</p>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <hr class="my-5">
+
+            <!-- لیست صفحات -->
+            <ul class="list-group mb-4 shadow-sm">
+                {% for page in pages %}
+                    <li class="list-group-item">
+                        <a href="{% url 'page_detail' page.pk %}">{{ page.title }}</a>
+                    </li>
+                {% empty %}
+                    <li class="list-group-item text-muted">هیچ صفحه‌ای یافت نشد.</li>
+                {% endfor %}
+            </ul>
+
+            <!-- Pagination -->
+            {% if is_paginated %}
+                <nav aria-label="Page navigation" class="text-center my-4">
+                    <ul class="pagination justify-content-center">
+
+                        {% if page_obj.has_previous %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ page_obj.previous_page_number }}">
+                                    &laquo; صفحه قبل
+                                </a>
+                            </li>
+                        {% else %}
+                            <li class="page-item disabled">
+                                <span class="page-link">&laquo; صفحه قبل</span>
+                            </li>
+                        {% endif %}
+
+                        <li class="page-item disabled">
+                            <span class="page-link">
+                                صفحه {{ page_obj.number }} از {{ page_obj.paginator.num_pages }}
+                            </span>
+                        </li>
+
+                        {% if page_obj.has_next %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ page_obj.next_page_number }}">
+                                    صفحه بعد &raquo;
+                                </a>
+                            </li>
+                        {% else %}
+                            <li class="page-item disabled">
+                                <span class="page-link">صفحه بعد &raquo;</span>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            {% endif %}
+
+        </div>
+    </div>
+</div>
+{% endblock %}

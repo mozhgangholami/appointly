@@ -1,0 +1,60 @@
+<!-- templates/account/email_confirm.html -->
+<!DOCTYPE html>
+{% extends '_base.html' %}
+{% load account %}
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>تأیید ایمیل</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #f7f7f7;
+            color: #333;
+            text-align: center;
+            padding: 40px;
+        }
+        .box {
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            display: inline-block;
+            max-width: 400px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        a.button {
+            display: inline-block;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+        a.button:hover {
+            background-color: #0056b3;
+        }
+        p.small {
+            font-size: 13px;
+            color: #666;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h2>تأیید ایمیل</h2>
+        <p>سلام {{ user.get_full_name|default:user.username }} 🌸</p>
+        <p>برای فعال‌سازی حساب خود در <strong>{{ site_name }}</strong> روی دکمه زیر کلیک کنید:</p>
+
+        <a href="{{ activation_link }}" class="button">تأیید ایمیل</a>
+
+        <p class="small">
+            اگر دکمه بالا کار نکرد، این لینک را در مرورگر خود باز کنید:<br>
+            <a href="{{ activation_link }}">{{ activation_link }}</a>
+        </p>
+
+        <p class="small">اگر شما ثبت‌نام نکرده‌اید، این ایمیل را نادیده بگیرید.</p>
+    </div>
+</body>
+</html>

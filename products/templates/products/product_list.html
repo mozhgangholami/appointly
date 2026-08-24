@@ -1,0 +1,108 @@
+{% extends '_base.html' %}
+{% load static %}
+{% load i18n %}
+{% block content %}
+    <div class="container my-4">
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const preview = document.getElementById("category-preview");
+                const img = document.getElementById("preview-img");
+
+                document.querySelectorAll(".category-item").forEach(item => {
+                    item.addEventListener("mousemove", (e) => {
+                        const imageUrl = item.getAttribute("data-image");
+                        if (imageUrl) {
+                            img.src = imageUrl;
+                            preview.style.display = "block";
+                            preview.style.left = e.pageX + 20 + "px";
+                            preview.style.top = e.pageY - 50 + "px";
+                        }
+                    });
+
+                    item.addEventListener("mouseleave", () => {
+                        preview.style.display = "none";
+                    });
+                });
+            });
+        </script>
+
+        <!-- دسته‌بندی‌ها -->
+        <h3 class="mb-3 text-center" dir="rtl">{% trans "لاین زیبایی خدمات ما" %}</h3>
+
+        <ul class="category-list" dir="rtl">
+            {% if categories %}
+                {% for category in categories %}
+                    <li
+                            class="category-item {% if current_category and current_category.pk == category.pk %}active{% endif %}"
+                            data-image="{{ category.image.url }}"
+                    >
+                        <a href="{% url 'products:category_products' category.pk %}">{{ category.name }}</a>
+                    </li>
+                {% endfor %}
+                </ul>
+
+                <!-- پیش‌نمایش شناور تصویر -->
+                <div id="category-preview" class="category-preview">
+                    <img id="preview-img" src="" alt="تصویر دسته‌بندی">
+                </div>
+            {% else %}
+                <p class="text-muted text-center">هیچ دسته‌بندی وجود ندارد.</p>
+            {% endif %}
+
+        <hr>
+
+        <!-- محصولات -->
+        {% if products %}
+            {% if category %}
+                <h2 class="mb-4 text-center">محصولات دسته: {{ category.name }}</h2>
+            {% else %}
+                <h2 class="mb-4 text-center">همه محصولات</h2>
+            {% endif %}
+
+            <div class="row">
+                {% for product in products %}
+                    <div class="col-md-4 mb-4">
+                        <div class="card p-3 h-100 text-center">
+                            <a href="{% url 'products:product_detail' product.pk %}">
+                                {% if product.image %}
+                                    <img src="{{ product.image.url }}" alt="{{ product.title }}"
+                                         class="card-img-top mb-3 product-image">
+                                {% else %}
+                                    <img src="{% static 'images/no-image.jpg' %}" alt="بدون تصویر"
+                                         class="card-img-top mb-3 product-image">
+                                {% endif %}
+                                <h4 class="mt-2">{{ product.title }}</h4>
+                            </a>
+                            <p class="text-muted">{{ product.description|truncatewords:15 }}</p>
+                            <a href="{% url 'products:product_detail' product.pk %}" class="btn btn-primary btn-sm">مشاهده
+                                جزئیات</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <!-- صفحه‌بندی -->
+            {% if is_paginated %}
+                <div class="pagination my-4 text-center">
+                    {% if page_obj.has_previous %}
+                        <a href="?page=1">&laquo; اولین</a>
+                        <a href="?page={{ page_obj.previous_page_number }}">قبلی</a>
+                    {% endif %}
+
+                    <span class="current mx-2">
+                    صفحه {{ page_obj.number }} از {{ page_obj.paginator.num_pages }}
+                </span>
+
+                    {% if page_obj.has_next %}
+                        <a href="?page={{ page_obj.next_page_number }}">بعدی</a>
+                        <a href="?page={{ page_obj.paginator.num_pages }}">آخرین &raquo;</a>
+                    {% endif %}
+                </div>
+            {% endif %}
+
+        {% else %}
+            <p class="text-center text-muted">هیچ محصولی در این دسته وجود ندارد.</p>
+        {% endif %}
+    </div>
+{% endblock %}

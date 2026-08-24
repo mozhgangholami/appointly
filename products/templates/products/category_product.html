@@ -1,0 +1,45 @@
+{% extends "_base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container my-4">
+
+    <div class="category-header text-end mb-4" dir="rtl">
+        <h2>دسته بندی: {{ category.title }}</h2>
+    </div>
+
+    {% if products %}
+        <div class="row">
+            {% for product in products %}
+                <div class="col-md-4 mb-4 text-center">
+                    <div class="card h-100 shadow-sm">
+                        <a href="{% url 'products:product_detail' product.pk %}">
+                            {% if product.image %}
+                                <img src="{{ product.image.url }}" alt="{{ product.title }}"
+                                     class="img-fluid rounded product-image">
+                            {% else %}
+                                <img src="{% static 'images/no-image.jpg' %}" alt="بدون تصویر"
+                                     class="img-fluid rounded product-image">
+                            {% endif %}
+                        </a>
+                        <div class="card-body text-end" dir="rtl">
+                            <h5 class="card-title">{{ product.title }}</h5>
+                            <p class="card-text text-muted">{{ product.price }} تومان</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="text-center text-muted">هیچ محصولی در این دسته وجود ندارد.</p>
+    {% endif %}
+
+    <div class="text-center mt-4">
+        <a href="{% url 'products:product_list' %}" class="btn btn-outline-primary">
+            بازگشت به همه محصولات
+        </a>
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "_base.html" %}
+{% block content %}
+<div class="container mt-4">
+  <h2>نوبت‌های من</h2>
+  {% if appointments %}
+    <ul class="list-group">
+      {% for appointment in appointments %}
+        <li class="list-group-item">
+          <a href="{% url 'booking:appointment_detail' appointment.pk %}">
+            {{ appointment.service.name }} - {{ appointment.date }} - {{ appointment.start_time }}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>هنوز نوبتی رزرو نکرده‌اید.</p>
+  {% endif %}
+</div>
+{% endblock %}
